@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="test">
     我是Home页
   </div>
 </template>
@@ -10,6 +10,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+.test{
+  height: 1300px;
+}
 </style>
