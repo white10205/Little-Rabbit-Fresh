@@ -7,12 +7,13 @@ export const lazyPlugin = {
             //el：指令绑定的元素
             //binding：表达式的值
             mounted(el,binding){
-                useIntersectionObserver(
+               const {stop} = useIntersectionObserver(
                     el,
                     ([{ isIntersecting }]) => {
                         if(isIntersecting){
                             //进入视口区域
                             el.src = binding.value
+                            stop()
                         }
                     },
                   )
