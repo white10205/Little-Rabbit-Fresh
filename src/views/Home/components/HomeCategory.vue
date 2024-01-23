@@ -16,7 +16,7 @@ const categoryStore = useCategoryStore()
           <ul>
             <li v-for="i in item.goods" :key="i">
               <RouterLink to="/">
-                <img alt="" :src="i.picture"/>
+                <img alt="" v-img-lazy="i.picture"/>
                 <div class="info">
                   <p class="name ellipsis-2">
                     {{i.name}}
