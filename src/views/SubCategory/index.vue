@@ -28,6 +28,10 @@ const getGoodList = async()=>{
   const res = await getSubCategoryAPI(reqData)
   goodList.value = res.data.result.items
 }
+const handleClick = ()=>{
+  reqData.value.page = 1
+  getGoodList()
+}
 onMounted(()=>{
   getGoodList()
 })
@@ -46,7 +50,7 @@ onMounted(()=>{
       </el-breadcrumb>
     </div>
     <div class="sub-container">
-      <el-tabs>
+      <el-tabs v-model="reqData.sortField" @tab-change="handleClick">
         <el-tab-pane label="最新商品" name="publishTime"></el-tab-pane>
         <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
         <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
