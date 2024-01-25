@@ -24,7 +24,13 @@ const router = createRouter({
         }
       ]
     }
-  ]
+  ],
+  //路由行为的定制项
+  scrollBehavior(){
+    return {
+      top:0
+    }
+  }
 })
 
 export default router
