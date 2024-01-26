@@ -5,18 +5,23 @@ import { useRoute } from 'vue-router'
 const hotList = ref([])
 const route = useRoute()
 const getHotList = async()=>{
-  const res = await fetchHotGoodsAPI({id:route.params.id,type:1})
+  const res = await fetchHotGoodsAPI({id:route.params.id,type:props.hotType})
   hotList.value = res.data.result
 }
 onMounted(()=>{
   getHotList()
+})
+const props = defineProps({
+  hotType:{
+    type:Number
+  }
 })
 </script>
 
 
 <template>
   <div class="goods-hot">
-    <h3>周日榜单</h3>
+    <h3>{{ hotType === 1 ? '24小时热榜' : '每周热榜' }}</h3>
     <!-- 商品区块 -->
     <RouterLink to="/" class="goods-item" v-for="item in hotList" :key="item.id">
       <img :src="item.picture" alt="" />
