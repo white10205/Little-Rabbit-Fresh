@@ -5,6 +5,7 @@ import { ref } from "vue";
 const form = ref({
   account: "",
   password: "",
+  agree:true
 });
 
 //2.准备规则对象
@@ -62,8 +63,8 @@ const rules = {
               <el-form-item label="密码" prop="password">
                 <el-input v-model="form.password"/>
               </el-form-item>
-              <el-form-item label-width="22px">
-                <el-checkbox size="large">
+              <el-form-item label-width="22px" prop="agree">
+                <el-checkbox size="large" v-model="form.agree">
                   我已同意隐私条款和服务条款
                 </el-checkbox>
               </el-form-item>
