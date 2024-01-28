@@ -12,7 +12,7 @@ const userStore = useUserStore()
           <li>
             <el-popconfirm title="确认退出吗?" confirm-button-text="确认" cancel-button-text="取消">
               <template #reference>
-                <a href="javascript:;">退出登录</a>
+                <a href="javascript:;" @click="userStore.setUserInfo()">退出登录</a>
               </template>
             </el-popconfirm>
           </li>
