@@ -2,12 +2,12 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import 'element-plus/theme-chalk/el-message.css'
 import { useUserStore } from '@/stores/user'
+import router from '@/router'
 // 创建axios实例
 const http = axios.create({
   baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
   timeout: 5000
 })
-
 // 添加请求拦截器
 http.interceptors.request.use(function (config) {
   // 1. 从pinia获取token数据
@@ -31,10 +31,17 @@ http.interceptors.response.use(function (response) {
 }, function (error) {
   // 超出 2xx 范围的状态码都会触发该函数。
   // 对响应错误做点什么
+  const userStore = useUserStore()
   ElMessage({
     type:'warning',
     message:error.response.data.message
   })
+
+  //处理401 token失效
+  if(error.response.status == 401){
+    userStore.setUserInfo() 
+    router.push('/login')
+  }
   return Promise.reject(error);
 });
 
