@@ -26,6 +26,14 @@ const rules = {
     }
   ]
 }
+
+//获取form实例做统一检验
+const formRef = ref(null)
+const doLogin = ()=>{
+  formRef.value.validate((valid)=>{
+    console.log(valid);
+  })
+}
 </script>
 
 
@@ -56,6 +64,7 @@ const rules = {
               :model="form"
               status-icon
               :rules="rules"
+              ref="formRef"
             >
               <el-form-item label="账户" prop="account">
                 <el-input v-model="form.account"/>
@@ -68,7 +77,7 @@ const rules = {
                   我已同意隐私条款和服务条款
                 </el-checkbox>
               </el-form-item>
-              <el-button size="large" class="subBtn">点击登录</el-button>
+              <el-button size="large" class="subBtn" @click="doLogin">点击登录</el-button>
             </el-form>
           </div>
         </div>
